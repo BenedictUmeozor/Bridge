@@ -1,6 +1,6 @@
 import Container from "../../../components/Container";
-import user from "../../../assets/images/user.svg";
-import briefcase from "../../../assets/images/briefcase.svg";
+import user from "../../../assets/images/personal.svg";
+import briefcase from "../../../assets/images/business.svg";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -25,30 +25,36 @@ const Account = ({ onNext, chosenAccount, setChosenAccount }: Props) => {
           Please note you can not use a personal account to open a business
           account
         </p>
-        <div className="flex items-center gap-8 max-md:flex-col">
-          <div
-            className={
-              "flex-1 py-4 rounded bg-[#FFECE3] cursor-pointer transform transition-all duration-100 ease-in hover:scale-95 hover:border-2 hover:border-primary_blue max-md:w-[90%] " +
-              (chosenAccount === "personal"
-                ? "border-2 border-primary_blue"
-                : "")
-            }
-            onClick={() => setAccount("personal")}
-          >
-            <img src={user} alt="image" className="w-36 mx-auto mb-4" />
-            <p>Personal Account</p>
+        <div className="flex items-center gap-6 max-md:flex-col">
+          <div className="flex-1 text-center">
+            <h3 className="text-lg font-semibold">Personal Account</h3>
+            <div onClick={() => setAccount("personal")}>
+              <img
+                src={user}
+                alt="image"
+                className={
+                  "max-w-full mx-auto transition-all rounded transform duration-300 ease-in hover:scale-95 hover:border-2 hover:border-primary_blue " +
+                  (chosenAccount === "personal"
+                    ? "border-2 border-primary_blue"
+                    : "")
+                }
+              />
+            </div>
           </div>
-          <div
-            className={
-              "flex-1 py-4 rounded bg-[#D2A5FF24] cursor-pointer transform transition-all duration-100 ease-in hover:scale-95 hover:border-2 hover:border-primary_blue max-md:w-[90%] " +
-              (chosenAccount === "business"
-                ? "border-2 border-primary_blue"
-                : "")
-            }
-            onClick={() => setAccount("business")}
-          >
-            <img src={briefcase} alt="image" className="w-36 mx-auto mb-4" />
-            <p>Business Account</p>
+          <div className="flex-1 text-center">
+            <h3 className="text-lg font-semibold">Business Account</h3>
+            <div onClick={() => setAccount("business")}>
+              <img
+                src={briefcase}
+                alt="image"
+                className={
+                  "max-w-full mx-auto transition-all rounded transform duration-300 ease-in hover:scale-95 hover:border-2 hover:border-primary_blue " +
+                  (chosenAccount === "business"
+                    ? "border-2 border-primary_blue"
+                    : "")
+                }
+              />
+            </div>
           </div>
         </div>
       </Container>

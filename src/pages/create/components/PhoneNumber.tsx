@@ -1,18 +1,29 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import Container from "../../../components/Container";
 
 type Props = {
   onNext: () => void;
-  setPhoneNumber: Dispatch<SetStateAction<string | null>>;
+  phoneNumber: string;
+  setPhoneNumber: Dispatch<SetStateAction<string>>;
 };
 
-const PhoneNumber = ({ onNext, setPhoneNumber }: Props) => {
-  const [value, setValue] = useState<null | string>(null);
+const PhoneNumber = ({ onNext, setPhoneNumber, phoneNumber }: Props) => {
+  const [value, setValue] = useState<string>("");
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPhoneNumber(value);
     onNext();
   };
+
+  useEffect(() => {
+    setValue(phoneNumber);
+  }, []);
 
   return (
     <div>
@@ -24,22 +35,23 @@ const PhoneNumber = ({ onNext, setPhoneNumber }: Props) => {
         <form className="max-w-lg mx-auto" onSubmit={onSubmit}>
           <div className="mb-8">
             <label
-              htmlFor="email"
+              htmlFor="password"
               className="font-semibold block text-left mb-2"
             >
               Enter phone number
             </label>
             <input
-              type="text"
-              id="email"
+              type="tel"
+              id="password"
               placeholder="+23412345678"
+              defaultValue={phoneNumber}
               onChange={(e) => setValue(e.target.value)}
               className="h-16 appearance-none rounded-md border-2 border-[#bbb] w-full px-2"
             />
           </div>
           <button
             className="h-12 text-center bg-primary_blue text-white font-bold w-full rounded-md transform hover:scale-95 hover:opacity-75"
-            disabled={value === null || value === ""}
+            disabled={value.trim() === ""}
           >
             Next
           </button>

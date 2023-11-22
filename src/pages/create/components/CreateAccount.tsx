@@ -1,19 +1,30 @@
 import { Link } from "react-router-dom";
 import Container from "../../../components/Container";
-import { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 type Props = {
   onNext: () => void;
-  setEmail: Dispatch<SetStateAction<string | null>>;
+  email: string;
+  setEmail: Dispatch<SetStateAction<string>>;
 };
 
-const CreateAccount = ({ onNext, setEmail }: Props) => {
-  const [value, setValue] = useState<null | string>(null);
+const CreateAccount = ({ onNext, setEmail, email }: Props) => {
+  const [value, setValue] = useState<string>("");
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setEmail(value);
     onNext();
   };
+
+  useEffect(() => {
+    setValue(email);
+  }, []);
 
   return (
     <div>
@@ -38,6 +49,7 @@ const CreateAccount = ({ onNext, setEmail }: Props) => {
             <input
               type="text"
               id="email"
+              defaultValue={email}
               placeholder="john@gmail.com"
               onChange={(e) => setValue(e.target.value)}
               className="h-16 appearance-none rounded-md border-2 border-[#bbb] w-full px-2"
@@ -45,7 +57,7 @@ const CreateAccount = ({ onNext, setEmail }: Props) => {
           </div>
           <button
             className="h-12 text-center bg-primary_blue text-white font-bold w-full rounded-md transform hover:scale-95 hover:opacity-75"
-            disabled={value === null || value === ""}
+            disabled={value.trim() === ""}
           >
             Next
           </button>

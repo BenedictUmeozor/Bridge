@@ -13,13 +13,13 @@ const OnBoarding = () => {
   const [chosenAccount, setChosenAccount] = useState<
     null | "personal" | "business"
   >(null);
-  const [email, setEmail] = useState<null | string>(null);
-  const [country, setCountry] = useState<null | string>(null);
-  const [phoneNumber, setPhoneNumber] = useState<null | string>(null);
-  const [password, setPassword] = useState<null | string>(null);
+  const [email, setEmail] = useState<string>("");
+  const [country, setCountry] = useState<string>("");
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   return (
-    <section>
+    <section className="pb-3">
       <div className="hidden">{email! + country + phoneNumber + password}</div>
       <Header />
       <Progress currentStep={currentStep} setCurrentStep={setCurrentStep} />
@@ -32,14 +32,23 @@ const OnBoarding = () => {
           />
         )}
         {currentStep === 2 && (
-          <CreateAccount onNext={() => setCurrentStep(3)} setEmail={setEmail} />
+          <CreateAccount
+            onNext={() => setCurrentStep(3)}
+            setEmail={setEmail}
+            email={email}
+          />
         )}
         {currentStep === 3 && (
-          <Country onNext={() => setCurrentStep(4)} setCountry={setCountry} />
+          <Country
+            onNext={() => setCurrentStep(4)}
+            setCountry={setCountry}
+            country={country}
+          />
         )}
         {currentStep === 4 && (
           <PhoneNumber
             onNext={() => setCurrentStep(5)}
+            phoneNumber={phoneNumber}
             setPhoneNumber={setPhoneNumber}
           />
         )}
@@ -47,6 +56,7 @@ const OnBoarding = () => {
         {currentStep === 6 && (
           <Password
             onNext={() => setCurrentStep(6)}
+            password={password}
             setPassword={setPassword}
           />
         )}

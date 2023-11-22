@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import image from "../../../assets/images/hero.png";
+import image from "../../../assets/images/man-hero.svg";
 import Container from "../../../components/Container";
 
 const Hero = () => {

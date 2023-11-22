@@ -15,11 +15,12 @@ const Header = memo(() => {
           </h1>
         </Link>
         <div className="flex items-center gap-10 max-md:gap-2">
-          <div>
-            <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base max-md:text-xs">
-              NGN <ChevronDown className="w-4" />
-            </span>
-          </div>
+          <Link
+            to="/"
+            className="text-primary_blue font-bold text-base max-md:text-xs"
+          >
+            FAQs
+          </Link>
           <div>
             <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base max-md:text-xs">
               ENGLISH <ChevronDown className="w-4" />

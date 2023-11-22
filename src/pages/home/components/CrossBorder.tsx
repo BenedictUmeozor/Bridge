@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import image from "../../../assets/images/cross-border.png";
+import image from "../../../assets/images/cross-border.svg";
 import Container from "../../../components/Container";
 
 const CrossBorder = () => {
