@@ -7,7 +7,7 @@ import Container from "./Container";
 
 const Footer = () => {
   return (
-    <footer className="pt-12 p-6 bg-primary_blue text-white">
+    <footer className="pt-12 pb-6 bg-primary_blue text-white">
       <Container className="grid grid-cols-4 gap-4 max-lg:grid-cols-2 max-md:grid-cols-1 max-lg:gap-8">
         <div>
           <Link to="/" className="flex items-center gap-2 mb-6">
@@ -71,7 +71,7 @@ const Footer = () => {
             Login
           </Link>
           <Link
-            to="/register"
+            to="/create"
             className="w-48 border-2 border-white text-center py-1 font-semibold rounded-xl text-primary_blue bg-white transform hover:scale-95 max-md:w-full"
           >
             Create an Account

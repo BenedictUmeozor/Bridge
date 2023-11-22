@@ -10,11 +10,9 @@ const Nav = () => {
     <nav className="mobile_nav hidden max-md:block">
       <Container className="pt-28 pb-4">
         <div className="flex items-center justify-center gap-10 mb-12">
-          <div>
-            <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base">
-              NGN <ChevronDown className="w-4" />
-            </span>
-          </div>
+          <Link to="/" className="text-primary_blue font-bold text-base">
+            FAQs
+          </Link>
           <div>
             <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base">
               ENGLISH <ChevronDown className="w-4" />
@@ -29,7 +27,7 @@ const Nav = () => {
             Login
           </Link>
           <Link
-            to="/register"
+            to="/create"
             className="w-48 border-2 border-primary_blue text-center py-2 font-semibold rounded-xl text-white bg-primary_blue hover:text-primary_blue hover:bg-white"
           >
             Create an Account

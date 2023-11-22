@@ -20,14 +20,12 @@ const Header = () => {
               </h1>
             </Link>
             <div className="flex items-center gap-10 max-md:hidden">
+              <Link to="/" className="text-primary_blue font-bold text-base">
+                FAQs
+              </Link>
               <div>
                 <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base">
-                  NGN <ChevronDown className="w-4" />
-                </span>
-              </div>
-              <div>
-                <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base">
-                  ENGLISH <ChevronDown className="w-4" />
+                  English <ChevronDown className="w-4" />
                 </span>
               </div>
             </div>
@@ -40,23 +38,22 @@ const Header = () => {
               Login
             </Link>
             <Link
-              to="/register"
+              to="/create"
               className="w-48 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-white bg-primary_blue hover:text-primary_blue hover:bg-white"
             >
               Create an Account
             </Link>
           </div>
-          {open ? (
-            <X
-              className="w-8 h-8 text-primary_blue z-50"
-              onClick={() => setOpen(false)}
-            />
-          ) : (
-            <Menu
-              className="w-8 h-8 text-primary_blue z-50"
-              onClick={() => setOpen(true)}
-            />
-          )}
+          <div
+            className="hidden z-50 max-md:block"
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {open ? (
+              <X className="w-8 h-8 text-primary_blue z-50" />
+            ) : (
+              <Menu className="w-8 h-8 text-primary_blue z-50" />
+            )}
+          </div>
         </Container>
       </header>
       {open && <Nav />}

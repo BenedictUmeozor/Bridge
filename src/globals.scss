@@ -27,15 +27,26 @@
 
 * {
   font-family: "DM Sans", sans-serif;
+  word-wrap: break-word;
 }
 
 body {
   button {
     transition: all 0.3s ease;
+
+    &:disabled {
+      opacity: 0.7;
+    }
   }
 
   a {
     transition: all 0.3s ease;
+  }
+
+  input {
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -52,12 +63,44 @@ body {
 
 @keyframes fadeIn {
   from {
-    transform: translateY(-50px);
+    // transform: translateY(-50px);
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
+    // transform: translateY(0);
     opacity: 1;
+  }
+}
+
+.progress_dot {
+  height: 1rem;
+  width: 1rem;
+  background-color: #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &.active {
+    background-color: #011458;
+    width: 3rem;
+    border-radius: 3rem;
+  }
+
+  &:not(.active):hover {
+    background-color: #bbb;
+  }
+}
+
+.spin-button-none::-webkit-inner-spin-button,
+.spin-button-none::-webkit-outer-spin-button {
+  appearance: none !important;
+}
+
+.dashboard {
+  a {
+    &.active {
+      background-color: #AAB1C7;
+    }
   }
 }
