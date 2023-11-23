@@ -3,14 +3,16 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import { lazy } from "react";
 import App from "../App";
-import HomePage from "../pages/home";
-import OnBoarding from "../pages/create";
-import Login from "../pages/login";
-import DashboardLayout from "../pages/dashboard";
-import Dashboard from "../pages/dashboard/main";
-import Profile from "../pages/dashboard/profile";
-import SendMoney from "../pages/dashboard/send-money";
+
+const HomePage = lazy(() => import("../pages/home"));
+const OnBoarding = lazy(() => import("../pages/create"));
+const Login = lazy(() => import("../pages/login"));
+const DashboardLayout = lazy(() => import("../pages/dashboard"));
+const Dashboard = lazy(() => import("../pages/dashboard/main"));
+const Profile = lazy(() => import("../pages/dashboard/profile"));
+const SendMoney = lazy(() => import("../pages/dashboard/send-money"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
