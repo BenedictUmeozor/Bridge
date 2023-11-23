@@ -5,7 +5,7 @@ const Transactions = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold mb-8">Transactions</h2>
-      <div className="flex items-center h-14 gap-2">
+      <div className="flex items-center h-14 gap-2 max-md:block">
         <div className="flex-[1.5] h-full relative">
           <input
             type="text"
@@ -14,7 +14,7 @@ const Transactions = () => {
           />
           <Search className="w-4 absolute top-1/2 transform -translate-y-[50%] right-2 " />
         </div>
-        <button className="flex-[0.5] flex items-center gap-2 h-full rounded-md text-white bg-primary_blue hover:scale-95  justify-center">
+        <button className="flex-[0.5] flex items-center gap-2 h-full rounded-md text-white bg-primary_blue hover:scale-95  justify-center max-md:w-full max-md:mt-4">
           <svg
             width="25"
             className="w-5"
@@ -33,8 +33,8 @@ const Transactions = () => {
           Filter by date
         </button>
       </div>
-      <div className="mt-10 flex flex-col gap-2 items-center justify-center">
-        <img src={transactions} alt="w-28 mx-auto" />
+      <div className="mt-10 flex flex-col gap-2 items-center justify-center max-md:mt-36">
+        <img src={transactions} alt="" className="w-28 mx-auto"/>
         <p>No transactions yet</p>
       </div>
     </div>

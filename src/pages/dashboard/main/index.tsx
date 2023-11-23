@@ -9,9 +9,9 @@ const Dashboard = () => {
   return (
     <div>
       <h2 className="text-3xl font-bold mb-6">Welcome,</h2>
-      <div className="max-w-lg bg-[#E8EAF0] rounded-md py-6 px-4 flex items-center justify-between">
+      <div className="max-w-lg bg-[#E8EAF0] rounded-md py-6 px-4 flex items-center justify-between   max-md:px-2 max-md:block">
         <div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 max-md:mb-3">
             <h2 className="font-bold text-3xl">
               {showCash ? "N 0.00" : "*****"}
             </h2>
@@ -22,12 +22,15 @@ const Dashboard = () => {
               {showCash ? <Eye className="w-4" /> : <EyeOff className="w-4" />}
             </div>
           </div>
-          <p className="mt-4">Account Number: 2099098668</p>
+          <p className="mt-4 max-md:mt-2">Account Number: 2099098668</p>
         </div>
         <Link
           to="/dashboard/send-money"
-          className="text-white bg-primary_blue rounded-xl border-2 py-2 px-6 hover:scale-95"
+          className="text-white bg-primary_blue rounded-xl border-2 py-2 px-6 hover:scale-95 max-md:hidden"
         >
+          Send money
+        </Link>
+        <Link to="/dashboard/send-money" className="text-white bg-primary_blue mt-3 p-1 hover:scale-95 md:hidden">
           Send money
         </Link>
       </div>
