@@ -1,6 +1,51 @@
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Eye, EyeOff } from "react-feather";
+import ExchangeRate from "./components/ExchangeRate";
+
 const Dashboard = () => {
+  const [showCash, setShowCash] = useState(false);
+
   return (
-    <div>Dashboard</div>
-  )
-}
-export default Dashboard
+    <div>
+      <h2 className="text-3xl font-bold mb-6">Welcome,</h2>
+      <div className="max-w-lg bg-[#E8EAF0] rounded-md py-6 px-4 flex items-center justify-between">
+        <div>
+          <div className="flex items-center gap-3">
+            <h2 className="font-bold text-3xl">
+              {showCash ? "N 0.00" : "*****"}
+            </h2>
+            <div
+              className="cursor-pointer"
+              onClick={() => setShowCash((prev) => !prev)}
+            >
+              {showCash ? <Eye className="w-4" /> : <EyeOff className="w-4" />}
+            </div>
+          </div>
+          <p className="mt-4">Account Number: 2099098668</p>
+        </div>
+        <Link
+          to="/dashboard/send-money"
+          className="text-white bg-primary_blue rounded-xl border-2 py-2 px-6 hover:scale-95"
+        >
+          Send money
+        </Link>
+      </div>
+      <div className="mt-8">
+        <h2 className="text-xl mb-3 font-semibold">Exchange rate</h2>
+        <p className="mb-10">Enter an amount to know the exchange rate</p>
+        <ExchangeRate />
+        <div className="mt-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl mb-3 font-semibold">Recent Activity</h2>
+            <p className="underline text-primary_blue cursor-pointer">
+              See all
+            </p>
+          </div>
+          <div className="mt-6 h-32 max-w-xl rounded-md bg-[#E8EAF0]"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Dashboard;

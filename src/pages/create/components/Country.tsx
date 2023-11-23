@@ -45,7 +45,7 @@ const Country = ({ onNext, setCountry, country }: Props) => {
               type="text"
               id="country"
               placeholder="Nigeria"
-              value={country}
+              defaultValue={country}
               onChange={(e) => setValue(e.target.value)}
               className="h-16 appearance-none rounded-md border-2 border-[#bbb] w-full px-2"
             />
@@ -53,7 +53,6 @@ const Country = ({ onNext, setCountry, country }: Props) => {
           <button
             className="h-12 text-center bg-primary_blue text-white font-bold w-full rounded-md transform hover:scale-95 hover:opacity-75"
             disabled={value.trim() === ""}
-            onClick={onNext}
           >
             Next
           </button>

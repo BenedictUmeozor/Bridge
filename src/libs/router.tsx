@@ -9,6 +9,7 @@ import OnBoarding from "../pages/create";
 import Login from "../pages/login";
 import DashboardLayout from "../pages/dashboard";
 import Dashboard from "../pages/dashboard/main";
+import Profile from "../pages/dashboard/profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />} />
       <Route path="dashboard" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Route>
   )
