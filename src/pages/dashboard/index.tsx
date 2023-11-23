@@ -101,7 +101,7 @@ const DashboardLayout = () => {
           </button>
         </div>
       </div>
-      <div className="col-span-9 overflow-y-auto h-screen md:p-4">
+      <div className="col-span-9 overflow-y-auto h-screen md:p-8">
         <div className="flex items-center justify-end">
           <div className="flex items-center gap-4">
             <div className="bg-[#CCD0DE] h-12 w-12 flex items-center justify-center rounded-xl  cursor-pointer transition-all duration-150 ease-in hover:scale-95">
