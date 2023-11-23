@@ -1,4 +1,4 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../../assets/icons/logo.svg";
 import dashboard from "../../assets/icons/dashboard.svg";
 import send_money from "../../assets/icons/send-money.svg";
@@ -10,6 +10,8 @@ import bell from "../../assets/icons/bell.svg";
 import dashboard_user from "../../assets/icons/dashboard_user.svg";
 
 const DashboardLayout = () => {
+  const { pathname } = useLocation();
+
   return (
     <div className="dashboard grid grid-cols-12 h-screen  max-w-7xl mx-auto">
       <div className="col-span-3 bg-primary_blue flex flex-col items-center justify-between h-screen pb-5">
@@ -19,54 +21,81 @@ const DashboardLayout = () => {
           </Link>
           <ul>
             <li className="mb-6 w-full flex items-center justify-center">
-              <NavLink
+              <Link
                 to="/dashboard"
-                className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95"
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
+                  (pathname.split("/").length === 2 ? "bg-[#AAB1C7]" : "")
+                }
               >
                 <img src={dashboard} alt="image" className="w-6" />
                 <span className="text-white">Dashboard</span>
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-6 w-full flex items-center justify-center">
-              <NavLink
+              <Link
                 to="/dashboard/send-money"
-                className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95"
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
+                  (pathname.split("/").includes("send-money")
+                    ? "bg-[#AAB1C7]"
+                    : "")
+                }
               >
                 <img src={send_money} alt="image" className="w-6" />
                 <span className="text-white">Send Money</span>
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-6 w-full flex items-center justify-center">
-              <NavLink
+              <Link
                 to="/dashboard/beneficiaries"
-                className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95"
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
+                  (pathname.split("/").includes("beneficiaries")
+                    ? "bg-[#AAB1C7]"
+                    : "")
+                }
               >
                 <img src={beneficiaries} alt="image" className="w-6" />
                 <span className="text-white">Beneficiaries</span>
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-6 w-full flex items-center justify-center">
-              <NavLink
+              <Link
                 to="/dashboard/transactions"
-                className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95"
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
+                  (pathname.split("/").includes("transactions")
+                    ? "bg-[#AAB1C7]"
+                    : "")
+                }
               >
                 <img src={transactions} alt="image" className="w-6" />
                 <span className="text-white">Transactions</span>
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-6 w-full flex items-center justify-center">
-              <NavLink
+              <Link
                 to="/dashboard/support"
-                className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95"
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
+                  (pathname.split("/").includes("support")
+                    ? "bg-[#AAB1C7]"
+                    : "")
+                }
               >
                 <img src={support} alt="image" className="w-6" />
                 <span className="text-white">Support</span>
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>
         <div>
-          <button className="inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95">
+          <button
+            className={
+              "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 "
+            }
+          >
             <img src={logout} alt="image" className="w-6" />
             <span className="text-white">Logout</span>
           </button>
