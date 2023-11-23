@@ -76,7 +76,7 @@ const DashboardLayout = () => {
             </li>
             <li className="mb-6 w-full flex items-center justify-center">
               <Link
-                to="/dashboard/support"
+                to="/dashboard"
                 className={
                   "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 " +
                   (pathname.split("/").includes("support")
