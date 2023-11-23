@@ -34,10 +34,12 @@ const Amount = ({ changeStep }: Props) => {
                 <Select.Option
                   key={country.alpha2Code}
                   value={country.name.common}
+  
                 >
                   <img
                     src={country.flags.svg}
                     alt={`${country.name} Flag`}
+                    className="inline-block"
                     style={{ width: "20px", marginRight: "8px" }}
                   />
                   {country.name.common}
