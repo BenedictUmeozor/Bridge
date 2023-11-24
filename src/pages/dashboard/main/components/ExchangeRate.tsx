@@ -56,7 +56,7 @@ const ExchangeRate = () => {
             alt={`${currency} Flag`}
             className="w-5"
           />
-          {currency} - ({code})
+          {currency} - ({value})
         </div>
       </Select.Option>
     )
