@@ -25,7 +25,7 @@ const Amount = ({ changeStep }: Props) => {
           <div className=" border-2 rounded border-[#AAB1C7] flex items-center justify-between gap-2 bg-white">
             <Select
               showSearch
-              className="w-full border-0 appearance-none"
+              className="w-full border-0 appearance-none max-md:flex-1"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
@@ -60,7 +60,7 @@ const Amount = ({ changeStep }: Props) => {
             <input
               type="number"
               placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs spin-button-none"
+              className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
             />
           </div>
         </div>
@@ -69,7 +69,7 @@ const Amount = ({ changeStep }: Props) => {
           <div className=" border-2 rounded border-[#AAB1C7] flex items-center justify-between gap-2 bg-white">
             <Select
               showSearch
-              className="w-full border-0 appearance-none"
+              className="w-full max-md:flex-1 border-0 appearance-none"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
@@ -104,7 +104,7 @@ const Amount = ({ changeStep }: Props) => {
             <input
               type="number"
               placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs spin-button-none"
+              className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
             />
           </div>
         </div>

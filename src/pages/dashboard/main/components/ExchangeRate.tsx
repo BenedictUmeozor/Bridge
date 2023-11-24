@@ -9,14 +9,14 @@ const ExchangeRate = () => {
       <div className="mb-4 border-2 border-[#FEFEFE] flex items-center justify-between gap-2 bg-white">
         <Select
           showSearch
-          className="w-full border-0 appearance-none"
+          className="w-full border-0 appearance-none max-md:flex-1"
           placeholder="Select a country"
           optionFilterProp="children"
           bordered={false}
         >
           {countries.map((country) => (
             <Select.Option key={country.alpha2Code} value={country.name.common}>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 ">
                 {" "}
                 <img
                   src={country.flags.svg}
@@ -41,13 +41,13 @@ const ExchangeRate = () => {
         <input
           type="number"
           placeholder="Enter Amount"
-          className="text-xs placeholder:text-xs spin-button-none"
+          className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
         />
       </div>
       <div className="border-2 border-[#FEFEFE] flex items-center justify-between  gap-2 bg-white">
         <Select
           showSearch
-          className="w-full border-0 appearance-none"
+          className="w-full border-0 appearance-none max-md:flex-1"
           placeholder="Select a country"
           optionFilterProp="children"
           bordered={false}
@@ -79,7 +79,7 @@ const ExchangeRate = () => {
         <input
           type="number"
           placeholder="Enter Amount"
-          className="text-xs placeholder:text-xs spin-button-none"
+          className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
         />
       </div>
     </div>
