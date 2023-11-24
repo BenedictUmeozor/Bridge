@@ -22,7 +22,7 @@ const DashboardLayout = () => {
     <Helmet>
         <title>Bridge - Dashboard</title>
       </Helmet>
-      <div className="dashboard grid grid-cols-12 h-screen  max-w-7xl mx-auto max-md:block">
+      <div className="dashboard grid grid-cols-12 h-screen max-w-full mx-auto max-md:block">
         <div className="col-span-3 bg-primary_blue flex flex-col items-center justify-between h-screen pb-5 max-md:hidden">
           <div>
             <Link to="/dashboard" className="block py-4 mb-10">
