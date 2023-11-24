@@ -82,7 +82,7 @@ const Amount = ({ changeStep }: Props) => {
           <p className="mb-1">You send</p>
           <div className="mb-4 border-2 border-[#ccc] rounded flex items-center justify-between gap-2 bg-white">
             <Select
-              className="w-full border-0 appearance-none flex-1"
+              className="w-full border-0 appearance-none flex-[1.2]"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
@@ -104,7 +104,7 @@ const Amount = ({ changeStep }: Props) => {
             <input
               type="number"
               placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs h-full w-full spin-button-none flex-1"
+              className="text-xs placeholder:text-xs h-full w-full spin-button-none flex-[0.8]"
               value={fromAmount}
               onChange={(e) => setFromAmount(e.target.value)}
             />
@@ -114,7 +114,7 @@ const Amount = ({ changeStep }: Props) => {
           <p className="mb-1">Recipient receives</p>
           <div className="border-2 border-[#ccc] rounded flex items-center justify-between overflow-hidden  gap-2 bg-white">
             <Select
-              className="w-full border-0 appearance-none flex-1"
+              className="w-full border-0 appearance-none flex-[1.2]"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
@@ -133,7 +133,7 @@ const Amount = ({ changeStep }: Props) => {
               <path d="M1 0.5V46.5" stroke="#B3B3B3" strokeWidth="1.5" />
             </svg>
 
-            <p className="text-xs flex-1">
+            <p className="text-xs flex-[0.8]">
               {exchangeRate ? exchangeRate : converting ? "converting..." : ""}
             </p>
           </div>
