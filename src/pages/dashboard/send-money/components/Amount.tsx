@@ -134,7 +134,11 @@ const Amount = ({ changeStep }: Props) => {
             </svg>
 
             <p className="text-xs flex-[0.8]">
-              {exchangeRate ? exchangeRate : converting ? "converting..." : ""}
+              {exchangeRate
+                ? toCurrency + " " + exchangeRate
+                : converting
+                ? "converting..."
+                : ""}
             </p>
           </div>
         </div>

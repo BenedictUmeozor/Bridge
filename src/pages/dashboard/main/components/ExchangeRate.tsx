@@ -71,7 +71,7 @@ const ExchangeRate = () => {
           optionFilterProp="children"
           bordered={false}
           onChange={handleChange}
-          dropdownStyle={{width: "300px"}}
+          dropdownStyle={{ width: "300px" }}
         >
           {countryOptions}
         </Select>
@@ -100,7 +100,7 @@ const ExchangeRate = () => {
           optionFilterProp="children"
           bordered={false}
           onChange={handleToChange}
-          dropdownStyle={{width: "300px"}}
+          dropdownStyle={{ width: "300px" }}
         >
           {countryOptions}
         </Select>
@@ -115,7 +115,11 @@ const ExchangeRate = () => {
         </svg>
 
         <p className="text-xs flex-[0.8]">
-          {exchangeRate ? exchangeRate : converting ? "converting..." : ""}
+          {exchangeRate
+            ? toCurrency + " " + exchangeRate
+            : converting
+            ? "converting..."
+            : ""}
         </p>
       </div>
     </div>
