@@ -1,13 +1,69 @@
 import { FormEvent } from "react";
-import { useNationContext } from "../../../../contexts/Nations";
 import { Select } from "antd";
+import { country_list } from "../../../../data/data";
+import { useState, useEffect } from "react";
 
 type Props = {
   changeStep: () => void;
 };
 
 const Amount = ({ changeStep }: Props) => {
-  const countries = useNationContext();
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
+  const [fromAmount, setFromAmount] = useState("");
+  const [exchangeRate, setExchangeRate] = useState("");
+  const [converting, setConverting] = useState(false);
+
+  const handleChange = (value: string) => {
+    setFromCurrency(value);
+  };
+
+  const handleToChange = (value: string) => {
+    setToCurrency(value);
+  };
+
+  const getExchangeRate = async (from: string, to: string, amount: string) => {
+    try {
+      setExchangeRate("");
+      setConverting(true);
+      const url = `https://v6.exchangerate-api.com/v6/c7e536f6027c5f5b7c15e5eb/latest/${from}`;
+
+      const res = await fetch(url);
+      const result = await res.json();
+
+      const rate = result?.conversion_rates[to];
+      const totalRate = (Number(amount) * rate).toFixed(2);
+      setExchangeRate(totalRate);
+      console.log(totalRate);
+    } catch (error) {
+      setExchangeRate("error");
+      console.log(error);
+    } finally {
+      setConverting(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!fromAmount) {
+      setExchangeRate("");
+    }
+    if (fromAmount && fromCurrency && toCurrency) {
+      getExchangeRate(fromCurrency, toCurrency, fromAmount);
+    }
+  }, [fromCurrency, toCurrency, fromAmount]);
+
+  const countryOptions = Object.entries(country_list).map(([value, label]) => (
+    <Select.Option key={value} value={value}>
+      <div className="flex items-center gap-2">
+        <img
+          src={`https://flagcdn.com/48x36/${label.toLowerCase()}.png`}
+          alt={`${label} Flag`}
+          className="w-5"
+        />
+        {value}
+      </div>
+    </Select.Option>
+  ));
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,30 +78,15 @@ const Amount = ({ changeStep }: Props) => {
       >
         <div className="mb-4">
           <p className="mb-1">You send</p>
-          <div className=" border-2 rounded border-[#AAB1C7] flex items-center justify-between gap-2 bg-white">
+          <div className="mb-4 border-2 border-[#FEFEFE] flex items-center justify-between gap-2 bg-white">
             <Select
-              showSearch
-              className="w-full border-0 appearance-none max-md:flex-1"
+              className="w-full border-0 appearance-none flex-1"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
+              onChange={handleChange}
             >
-              {countries.map((country) => (
-                <Select.Option
-                  key={country.alpha2Code}
-                  value={country.name.common}
-                >
-                  <div className="flex items-center gap-1">
-                    <img
-                      src={country.flags.svg}
-                      alt={`${country.name} Flag`}
-                      className="inline-block"
-                      style={{ width: "20px", marginRight: "8px" }}
-                    />
-                    {country.name.common}
-                  </div>
-                </Select.Option>
-              ))}
+              {countryOptions}
             </Select>
             <svg
               width="2"
@@ -54,42 +95,29 @@ const Amount = ({ changeStep }: Props) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M1 0.5V46.5" stroke="#B3B3B3" stroke-width="1.5" />
+              <path d="M1 0.5V46.5" stroke="#B3B3B3" strokeWidth="1.5" />
             </svg>
 
             <input
               type="number"
               placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
+              className="text-xs placeholder:text-xs spin-button-none flex-1"
+              value={fromAmount}
+              onChange={(e) => setFromAmount(e.target.value)}
             />
           </div>
         </div>
         <div className="">
           <p className="mb-1">Recipient receives</p>
-          <div className=" border-2 rounded border-[#AAB1C7] flex items-center justify-between gap-2 bg-white">
+          <div className="border-2 border-[#FEFEFE] flex items-center justify-between overflow-hidden  gap-2 bg-white">
             <Select
-              showSearch
-              className="w-full max-md:flex-1 border-0 appearance-none"
+              className="w-full border-0 appearance-none flex-1"
               placeholder="Select a country"
               optionFilterProp="children"
               bordered={false}
+              onChange={handleToChange}
             >
-              {countries.map((country) => (
-                <Select.Option
-                  key={country.alpha2Code}
-                  value={country.name.common}
-                >
-                  <div className="flex items-center gap-1">
-                    <img
-                      src={country.flags.svg}
-                      alt={`${country.name} Flag`}
-                      className="inline-block"
-                      style={{ width: "20px", marginRight: "8px" }}
-                    />
-                    {country.name.common}
-                  </div>
-                </Select.Option>
-              ))}
+              {countryOptions}
             </Select>
             <svg
               width="2"
@@ -98,14 +126,12 @@ const Amount = ({ changeStep }: Props) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M1 0.5V46.5" stroke="#B3B3B3" stroke-width="1.5" />
+              <path d="M1 0.5V46.5" stroke="#B3B3B3" strokeWidth="1.5" />
             </svg>
 
-            <input
-              type="number"
-              placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs spin-button-none max-md:flex-1"
-            />
+            <p className="text-xs flex-1">
+              {exchangeRate ? exchangeRate : converting ? "converting..." : ""}
+            </p>
           </div>
         </div>
         <button className="h-14 w-full mt-10 rounded-md bg-primary_blue text-white hover:scale-95">
