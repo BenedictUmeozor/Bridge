@@ -19,17 +19,17 @@ const DashboardLayout = () => {
 
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Bridge - Dashboard</title>
       </Helmet>
       <div className="dashboard grid grid-cols-12 h-screen max-w-full mx-auto max-md:block">
-        <div className="col-span-3 bg-primary_blue flex flex-col items-center justify-between h-screen pb-5 max-md:hidden">
+        <div className="col-span-3 bg-primary_blue flex flex-col items-center justify-between h-screen py-5 lg:pt-8 xl:pt-12 max-md:hidden">
           <div>
             <Link to="/dashboard" className="block py-4 mb-10">
               <img src={logo} alt="image" className="w-44 mx-auto" />
             </Link>
             <ul>
-              <li className="mb-6 w-full justify-center">
+              <li className="mb-6 w-full justify-center xl:mb-8">
                 <Link
                   to="/dashboard"
                   className={
@@ -41,7 +41,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Dashboard</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full justify-center">
+              <li className="mb-6 w-full justify-center xl:mb-8">
                 <Link
                   to="/dashboard/send-money"
                   className={
@@ -55,7 +55,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Send Money</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full justify-center">
+              <li className="mb-6 w-full justify-center xl:mb-8">
                 <Link
                   to="/dashboard/beneficiaries"
                   className={
@@ -69,7 +69,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Beneficiaries</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full justify-center">
+              <li className="mb-6 w-full justify-center xl:mb-8">
                 <Link
                   to="/dashboard/transactions"
                   className={
@@ -83,7 +83,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Transactions</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full justify-center">
+              <li className="mb-6 w-full justify-center xl:mb-8">
                 <Link
                   to="/dashboard"
                   className={
@@ -99,16 +99,18 @@ const DashboardLayout = () => {
               </li>
             </ul>
           </div>
-          <div>
-            <button
-              className={
-                "flex justify-start items-center gap-2 py-2 px-8 rounded-md hover:scale-95 "
-              }
-            >
-              <img src={logout} alt="image" className="w-6" />
-              <span className="text-white">Logout</span>
-            </button>
-          </div>
+          <ul>
+            <li className=" w-full justify-center">
+              <button
+                className={
+                  "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 "
+                }
+              >
+                <img src={logout} alt="image" className="w-6" />
+                <span className="text-white">Logout</span>
+              </button>
+            </li>
+          </ul>
         </div>
         <div className="col-span-9 overflow-y-auto h-screen md:p-8 max-md:px-2">
           <div className="flex items-center justify-end max-md:justify-between max-md:mb-4 max-md:py-3">
@@ -130,7 +132,9 @@ const DashboardLayout = () => {
             </div>
           </div>
 
-          <Outlet />
+          <div className="xl:pt-16 xl:pb-4">
+            <Outlet />
+          </div>
         </div>
       </div>
       {open && <MenuPage onClick={() => setOpen(false)} />}
