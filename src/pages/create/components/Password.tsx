@@ -7,20 +7,22 @@ import {
 } from "react";
 import Container from "../../../components/Container";
 import { Eye, EyeOff } from "react-feather";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
-  onNext: () => void;
   password: string;
   setPassword: Dispatch<SetStateAction<string>>;
 };
 
-const Password = ({ onNext, setPassword, password }: Props) => {
+const Password = ({ setPassword, password }: Props) => {
   const [value, setValue] = useState<string>("");
   const [type, setType] = useState("password");
+  const navigate = useNavigate();
+
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPassword(value);
-    onNext();
+    navigate("/dashboard");
   };
 
   useEffect(() => {
@@ -68,7 +70,6 @@ const Password = ({ onNext, setPassword, password }: Props) => {
           <button
             className="h-12 text-center bg-primary_blue text-white font-bold w-full rounded-md transform hover:scale-95 hover:opacity-75"
             disabled={value.trim() === ""}
-            onClick={onNext}
           >
             Done
           </button>

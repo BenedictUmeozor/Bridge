@@ -55,7 +55,6 @@ const OnBoarding = () => {
         {currentStep === 5 && <OTP onNext={() => setCurrentStep(6)} />}
         {currentStep === 6 && (
           <Password
-            onNext={() => setCurrentStep(6)}
             password={password}
             setPassword={setPassword}
           />

@@ -16,7 +16,7 @@ const Dashboard = () => {
               {showCash ? "N 0.00" : "*****"}
             </h2>
             <div
-              className="cursor-pointer"
+              className="cursor-pointer flex items-center justify-center"
               onClick={() => setShowCash((prev) => !prev)}
             >
               {showCash ? <Eye className="w-4" /> : <EyeOff className="w-4" />}
@@ -26,11 +26,8 @@ const Dashboard = () => {
         </div>
         <Link
           to="/dashboard/send-money"
-          className="text-white bg-primary_blue rounded-xl border-2 py-2 px-6 hover:scale-95 max-md:hidden"
+          className="text-white bg-primary_blue rounded-xl border-2 py-2 px-6 hover:scale-95 max-md:inline-block max-md:mt-4"
         >
-          Send money
-        </Link>
-        <Link to="/dashboard/send-money" className="text-white bg-primary_blue mt-3 p-1 hover:scale-95 md:hidden">
           Send money
         </Link>
       </div>

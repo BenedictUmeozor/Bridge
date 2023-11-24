@@ -20,7 +20,7 @@ const Header = memo(() => {
           </Link>
           <div>
             <span className="flex items-center gap-2 text-primary_blue font-bold cursor-pointer text-base max-md:text-xs">
-              ENGLISH <ChevronDown className="w-4" />
+              <span className="font-bold">ENGLISH</span> <ChevronDown className="w-4" />
             </span>
           </div>
         </div>
