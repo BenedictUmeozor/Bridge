@@ -25,7 +25,7 @@ const DashboardLayout = () => {
               <img src={logo} alt="image" className="w-44 mx-auto" />
             </Link>
             <ul>
-              <li className="mb-6 w-full flex items-center justify-center">
+              <li className="mb-6 w-full justify-center">
                 <Link
                   to="/dashboard"
                   className={
@@ -37,7 +37,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Dashboard</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full flex items-center justify-center">
+              <li className="mb-6 w-full justify-center">
                 <Link
                   to="/dashboard/send-money"
                   className={
@@ -51,7 +51,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Send Money</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full flex items-center justify-center">
+              <li className="mb-6 w-full justify-center">
                 <Link
                   to="/dashboard/beneficiaries"
                   className={
@@ -65,7 +65,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Beneficiaries</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full flex items-center justify-center">
+              <li className="mb-6 w-full justify-center">
                 <Link
                   to="/dashboard/transactions"
                   className={
@@ -79,7 +79,7 @@ const DashboardLayout = () => {
                   <span className="text-white">Transactions</span>
                 </Link>
               </li>
-              <li className="mb-6 w-full flex items-center justify-center">
+              <li className="mb-6 w-full justify-center">
                 <Link
                   to="/dashboard"
                   className={
@@ -98,7 +98,7 @@ const DashboardLayout = () => {
           <div>
             <button
               className={
-                "inline-flex mx-auto items-center justify-center gap-2 py-2 px-8 rounded-md hover:scale-95 "
+                "flex justify-start items-center gap-2 py-2 px-8 rounded-md hover:scale-95 "
               }
             >
               <img src={logout} alt="image" className="w-6" />
