@@ -1,8 +1,19 @@
 import { Search } from "react-feather";
 import transactions from "../../../assets/images/transaction.svg";
 import { Helmet } from "react-helmet";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { useState } from "react";
 
 const Transactions = () => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const handleClick = () => {
+    setShowDatePicker(true);
+  };
+
+  const handleDateChange = () => setShowDatePicker(false);
+
   return (
     <>
       <Helmet>
@@ -10,7 +21,7 @@ const Transactions = () => {
       </Helmet>
       <div>
         <h2 className="text-2xl font-bold mb-8">Transactions</h2>
-        <div className="flex items-center h-14 gap-2 max-md:block">
+        <div className="relative flex items-center h-14 gap-2 max-md:block">
           <div className="flex-[1.5] h-full relative">
             <input
               type="text"
@@ -19,7 +30,10 @@ const Transactions = () => {
             />
             <Search className="w-4 absolute top-1/2 transform -translate-y-[50%] right-2 " />
           </div>
-          <button className="flex-[0.5] flex items-center gap-2 h-full rounded-md text-white bg-primary_blue hover:scale-95  justify-center max-md:w-full max-md:mt-4">
+          <button
+            className="flex-[0.5] flex items-center gap-2 h-full rounded-md text-white bg-primary_blue hover:scale-95  justify-center max-md:w-full max-md:mt-4"
+            onClick={handleClick}
+          >
             <svg
               width="25"
               className="w-5"
@@ -31,12 +45,17 @@ const Transactions = () => {
               <path
                 d="M3.5 4.5L10.7 12.9089V19.2222L14.3 21V12.9089L21.5 4.5H3.5Z"
                 stroke="white"
-                stroke-width="2"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinejoin="round"
               />
             </svg>
             Filter by date
           </button>
+          {showDatePicker && (
+            <div className="datepicker-filter absolute z-10 top-full right-0 max-md:top-[250%] max-md:right-[50%] max-md:translate-x-[50%]">
+              <Calendar onChange={handleDateChange} className="block" />
+            </div>
+          )}
         </div>
         <div className="mt-10 flex flex-col gap-2 items-center justify-center max-md:mt-36">
           <img src={transactions} alt="" className="w-28 mx-auto" />

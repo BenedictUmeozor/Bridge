@@ -38,9 +38,9 @@ const Dashboard = () => {
         <div className="mt-8">
           <div className="flex items-center justify-between">
             <h2 className="text-xl mb-3 font-semibold">Recent Activity</h2>
-            <p className="underline text-primary_blue cursor-pointer">
+            <Link to="/dashboard/transactions" className="underline text-primary_blue cursor-pointer">
               See all
-            </p>
+            </Link>
           </div>
           <div className="mt-6 h-32 max-w-xl rounded-md bg-[#E8EAF0]"></div>
         </div>
