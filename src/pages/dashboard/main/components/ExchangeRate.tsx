@@ -48,15 +48,15 @@ const ExchangeRate = () => {
   }, [fromCurrency, toCurrency, fromAmount]);
 
   const countryOptions = Object.entries(country_list).map(
-    ([value, { code, name }]) => (
+    ([value, { code, currency }]) => (
       <Select.Option key={value} value={value}>
         <div className="flex items-center gap-2">
           <img
             src={`https://flagcdn.com/48x36/${code.toLowerCase()}.png`}
-            alt={`${name} Flag`}
+            alt={`${currency} Flag`}
             className="w-5"
           />
-          {name}
+          {currency} - ({code})
         </div>
       </Select.Option>
     )
@@ -71,6 +71,7 @@ const ExchangeRate = () => {
           optionFilterProp="children"
           bordered={false}
           onChange={handleChange}
+          dropdownStyle={{width: "300px"}}
         >
           {countryOptions}
         </Select>
@@ -99,6 +100,7 @@ const ExchangeRate = () => {
           optionFilterProp="children"
           bordered={false}
           onChange={handleToChange}
+          dropdownStyle={{width: "300px"}}
         >
           {countryOptions}
         </Select>
