@@ -1,9 +1,14 @@
 import { Search } from "react-feather";
 import { Link } from "react-router-dom";
 import beneficiaries from "../../../assets/images/beneficiaries.svg";
+import { Helmet } from "react-helmet";
 
 const Beneficiaries = () => {
   return (
+    <>
+    <Helmet>
+        <title>Bridge - Beneficiaries</title>
+      </Helmet>
     <div>
       <h2 className="text-2xl font-bold mb-8">Beneficiaries</h2>
       <div className="flex items-center h-14 gap-2 max-md:block">
@@ -27,6 +32,7 @@ const Beneficiaries = () => {
         <p>No added beneficiaries yet</p>
       </div>
     </div>
+    </>
   );
 };
 export default Beneficiaries;

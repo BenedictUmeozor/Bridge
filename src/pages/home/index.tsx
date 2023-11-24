@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Footer from "../../components/Footer";
 import Header from "../../components/header/Header";
 import CrossBorder from "./components/CrossBorder";
@@ -6,13 +7,18 @@ import WhatWeOffer from "./components/WhatWeOffer";
 
 const HomePage = () => {
   return (
-    <section>
-      <Header />
-      <Hero />
-      <CrossBorder />
-      <WhatWeOffer />
-      <Footer />
-    </section>
+    <>
+      <Helmet>
+        <title>Bridge - Home</title>
+      </Helmet>
+      <section>
+        <Header />
+        <Hero />
+        <CrossBorder />
+        <WhatWeOffer />
+        <Footer />
+      </section>
+    </>
   );
 };
 export default HomePage;

@@ -48,7 +48,7 @@ const PIN = ({ changeStep }: Props) => {
   }, [currentIndex]);
 
   return (
-    <div className="max-w-lg mt-5 mx-auto">
+    <div className="max-w-lg mt-10 mx-auto">
       <h2 className="text-center mb-2 text-2xl font-bold">
         Create your four digit transaction pin
       </h2>

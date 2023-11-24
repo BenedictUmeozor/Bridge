@@ -11,6 +11,7 @@ import dashboard_user from "../../assets/icons/dashboard_user.svg";
 import { Menu } from "react-feather";
 import MenuPage from "./components/Menu";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const DashboardLayout = () => {
   const { pathname } = useLocation();
@@ -18,6 +19,9 @@ const DashboardLayout = () => {
 
   return (
     <>
+    <Helmet>
+        <title>Bridge - Dashboard</title>
+      </Helmet>
       <div className="dashboard grid grid-cols-12 h-screen  max-w-7xl mx-auto max-md:block">
         <div className="col-span-3 bg-primary_blue flex flex-col items-center justify-between h-screen pb-5 max-md:hidden">
           <div>
