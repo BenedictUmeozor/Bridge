@@ -16,12 +16,15 @@ const ExchangeRate = () => {
         >
           {countries.map((country) => (
             <Select.Option key={country.alpha2Code} value={country.name.common}>
-              <img
-                src={country.flags.svg}
-                alt={`${country.name} Flag`}
-                style={{ width: "20px", marginRight: "8px" }}
-              />
-              {country.name.common}
+              <div className="flex items-center gap-1">
+                {" "}
+                <img
+                  src={country.flags.svg}
+                  alt={`${country.name} Flag`}
+                  style={{ width: "20px", marginRight: "8px" }}
+                />
+                {country.name.common}
+              </div>
             </Select.Option>
           ))}
         </Select>
@@ -51,12 +54,15 @@ const ExchangeRate = () => {
         >
           {countries.map((country) => (
             <Select.Option key={country.alpha2Code} value={country.name.common}>
-              <img
-                src={country.flags.svg}
-                alt={`${country.name} Flag`}
-                style={{ width: "20px", marginRight: "8px" }}
-              />
-              {country.name.common}
+              <div className="flex items-center gap-1">
+                {" "}
+                <img
+                  src={country.flags.svg}
+                  alt={`${country.name} Flag`}
+                  style={{ width: "20px", marginRight: "8px" }}
+                />
+                {country.name.common}
+              </div>
             </Select.Option>
           ))}
         </Select>
