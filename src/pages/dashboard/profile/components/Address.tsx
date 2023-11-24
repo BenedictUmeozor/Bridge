@@ -13,7 +13,7 @@ const Address = ({ changeStep }: Props) => {
   return (
     <form className="max-w-lg" onSubmit={onSubmit}>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">Country of residence</label>
+        <label className="block mb-1 text-[0.95rem]">Country of residence</label>
         <input
           type="text"
           placeholder="Nigeria"
@@ -21,7 +21,7 @@ const Address = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">City</label>
+        <label className="block mb-1 text-[0.95rem]">City</label>
         <input
           type="text"
           placeholder="Port Harcourt"
@@ -29,7 +29,7 @@ const Address = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">Home address</label>
+        <label className="block mb-1 text-[0.95rem]">Home address</label>
         <input
           type="text"
           placeholder="Street name"
@@ -37,7 +37,7 @@ const Address = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">Postal code</label>
+        <label className="block mb-1 text-[0.95rem]">Postal code</label>
         <input
           type="text"
           placeholder="Postal code"
@@ -45,7 +45,7 @@ const Address = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-6">
-        <label className="block mb-1 text-[0.9rem]">BVN</label>
+        <label className="block mb-1 text-[0.95rem]">BVN</label>
         <input
           type="text"
           placeholder="BVN"

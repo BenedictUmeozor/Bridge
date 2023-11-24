@@ -53,7 +53,7 @@ const Personal = ({ changeStep }: Props) => {
   return (
     <form className="max-w-lg" onSubmit={onSubmit}>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">
+        <label className="block mb-1 text-[0.95rem]">
           First name and middle name (if any)
         </label>
         <input
@@ -63,7 +63,7 @@ const Personal = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">Surname</label>
+        <label className="block mb-1 text-[0.95rem]">Surname</label>
         <input
           type="text"
           placeholder="John doe"
@@ -71,7 +71,7 @@ const Personal = ({ changeStep }: Props) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block mb-1 text-[0.9rem]">Date of birth</label>
+        <label className="block mb-1 text-[0.95rem]">Date of birth</label>
         <div className="flex items-center gap-2">
           <DatePicker picker="month" className="flex-1 h-14" format="MMMM" />
           <DatePicker picker="date" className="flex-1 h-14" format="DD" />
@@ -79,7 +79,7 @@ const Personal = ({ changeStep }: Props) => {
         </div>
       </div>
       <div className="mb-6">
-        <label className="block mb-1 text-[0.9rem]">Phone number</label>
+        <label className="block mb-1 text-[0.95rem]">Phone number</label>
         <div className="flex items-center gap-2">
           <Select
             className="flex-1 h-14"
