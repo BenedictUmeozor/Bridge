@@ -4,7 +4,7 @@ import Container from "../../../components/Container";
 
 const Hero = () => {
   return (
-    <div className="py-6">
+    <div className="py-6 max-md:pt-0">
       <Container className="grid grid-cols-2 items-center gap-8 max-md:grid-cols-1">
         <div className="max-md:text-center">
           <h2 className="text-5xl font-bold text-[#222222] mb-5 max-md:text-4xl">
