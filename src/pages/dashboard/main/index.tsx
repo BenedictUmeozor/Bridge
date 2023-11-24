@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Eye, EyeOff } from "react-feather";
 import ExchangeRate from "./components/ExchangeRate";
+import no_transactions from "../../../assets/icons/no-transactions.svg";
 
 const Dashboard = () => {
   const [showCash, setShowCash] = useState(false);
@@ -38,11 +39,19 @@ const Dashboard = () => {
         <div className="mt-8">
           <div className="flex items-center justify-between">
             <h2 className="text-xl mb-3 font-semibold">Recent Activity</h2>
-            <Link to="/dashboard/transactions" className="underline text-primary_blue cursor-pointer">
+            <Link
+              to="/dashboard/transactions"
+              className="underline text-primary_blue cursor-pointer"
+            >
               See all
             </Link>
           </div>
-          <div className="mt-6 h-32 max-w-xl rounded-md bg-[#E8EAF0]"></div>
+          <div className="mt-6 h-48 w-full rounded-md bg-[#E8EAF0] flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center gap-2">
+              <img src={no_transactions} alt="image" className="w-6" />
+              <p className="text-center text-[0.9rem]">No transactions yet</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

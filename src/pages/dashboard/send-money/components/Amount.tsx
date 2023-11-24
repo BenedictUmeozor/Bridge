@@ -52,18 +52,20 @@ const Amount = ({ changeStep }: Props) => {
     }
   }, [fromCurrency, toCurrency, fromAmount]);
 
-  const countryOptions = Object.entries(country_list).map(([value, label]) => (
-    <Select.Option key={value} value={value}>
-      <div className="flex items-center gap-2">
-        <img
-          src={`https://flagcdn.com/48x36/${label.toLowerCase()}.png`}
-          alt={`${label} Flag`}
-          className="w-5"
-        />
-        {value}
-      </div>
-    </Select.Option>
-  ));
+  const countryOptions = Object.entries(country_list).map(
+    ([value, { code, name }]) => (
+      <Select.Option key={value} value={value}>
+        <div className="flex items-center gap-2">
+          <img
+            src={`https://flagcdn.com/48x36/${code.toLowerCase()}.png`}
+            alt={`${name} Flag`}
+            className="w-5"
+          />
+          {name}
+        </div>
+      </Select.Option>
+    )
+  );
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -78,7 +80,7 @@ const Amount = ({ changeStep }: Props) => {
       >
         <div className="mb-4">
           <p className="mb-1">You send</p>
-          <div className="mb-4 border-2 border-[#FEFEFE] flex items-center justify-between gap-2 bg-white">
+          <div className="mb-4 border-2 border-[#ccc] rounded flex items-center justify-between gap-2 bg-white">
             <Select
               className="w-full border-0 appearance-none flex-1"
               placeholder="Select a country"
@@ -101,7 +103,7 @@ const Amount = ({ changeStep }: Props) => {
             <input
               type="number"
               placeholder="Enter Amount"
-              className="text-xs placeholder:text-xs spin-button-none flex-1"
+              className="text-xs placeholder:text-xs h-full w-full spin-button-none flex-1"
               value={fromAmount}
               onChange={(e) => setFromAmount(e.target.value)}
             />
@@ -109,7 +111,7 @@ const Amount = ({ changeStep }: Props) => {
         </div>
         <div className="">
           <p className="mb-1">Recipient receives</p>
-          <div className="border-2 border-[#FEFEFE] flex items-center justify-between overflow-hidden  gap-2 bg-white">
+          <div className="border-2 border-[#ccc] rounded flex items-center justify-between overflow-hidden  gap-2 bg-white">
             <Select
               className="w-full border-0 appearance-none flex-1"
               placeholder="Select a country"

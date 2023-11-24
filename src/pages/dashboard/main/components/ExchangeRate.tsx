@@ -47,18 +47,20 @@ const ExchangeRate = () => {
     }
   }, [fromCurrency, toCurrency, fromAmount]);
 
-  const countryOptions = Object.entries(country_list).map(([value, label]) => (
-    <Select.Option key={value} value={value}>
-      <div className="flex items-center gap-2">
-        <img
-          src={`https://flagcdn.com/48x36/${label.toLowerCase()}.png`}
-          alt={`${label} Flag`}
-          className="w-5"
-        />
-        {value}
-      </div>
-    </Select.Option>
-  ));
+  const countryOptions = Object.entries(country_list).map(
+    ([value, { code, name }]) => (
+      <Select.Option key={value} value={value}>
+        <div className="flex items-center gap-2">
+          <img
+            src={`https://flagcdn.com/48x36/${code.toLowerCase()}.png`}
+            alt={`${name} Flag`}
+            className="w-5"
+          />
+          {name}
+        </div>
+      </Select.Option>
+    )
+  );
 
   return (
     <div className="bg-[#E8EAF0] max-w-md rounded-md p-6">
@@ -85,7 +87,7 @@ const ExchangeRate = () => {
         <input
           type="number"
           placeholder="Enter Amount"
-          className="text-xs placeholder:text-xs spin-button-none flex-1"
+          className="text-xs placeholder:text-xs h-full w-full spin-button-none flex-1"
           value={fromAmount}
           onChange={(e) => setFromAmount(e.target.value)}
         />
