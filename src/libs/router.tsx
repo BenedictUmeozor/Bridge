@@ -1,6 +1,7 @@
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
 } from "react-router-dom";
 import { lazy } from "react";
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="beneficiaries/add" element={<AddBeneficiaries />} />
         <Route path="transactions" element={<Transactions />} />
       </Route>
+      <Route path="*" element={<Navigate to="/" />} />
     </Route>
   )
 );

@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const token = JSON.parse(sessionStorage.getItem("token")!);
 
   return (
     <>
@@ -30,20 +31,33 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="flex-[0.9] flex items-center justify-end px-6 gap-6 max-md:hidden">
-            <Link
-              to="/login"
-              className="w-48 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-primary_blue hover:text-white hover:bg-primary_blue"
-            >
-              Login
-            </Link>
-            <Link
-              to="/create"
-              className="w-48 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-white bg-primary_blue hover:text-primary_blue hover:bg-white"
-            >
-              Create an Account
-            </Link>
-          </div>
+          {token ? (
+            <>
+              <Link
+                to="/dashboard"
+                className="w-48 ml-6 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-white bg-primary_blue hover:text-primary_blue hover:bg-white max-md:hidden"
+              >
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <div className="flex-[0.9] flex items-center justify-end px-6 gap-6 max-md:hidden">
+                <Link
+                  to="/login"
+                  className="w-48 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-primary_blue hover:text-white hover:bg-primary_blue"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/create"
+                  className="w-48 border-2 border-primary_blue text-center py-1 font-semibold rounded-xl text-white bg-primary_blue hover:text-primary_blue hover:bg-white"
+                >
+                  Create an Account
+                </Link>
+              </div>
+            </>
+          )}
           <div
             className="hidden z-50 max-md:block"
             onClick={() => setOpen((prev) => !prev)}

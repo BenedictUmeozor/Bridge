@@ -16,7 +16,7 @@ const Hero = () => {
             lifestyle.
           </p>
           <Link
-            to="/register"
+            to="/create"
             className="px-6 py-2 bg-primary_blue border-2 border-transparent text-white rounded-xl hover:text-primary_blue hover:bg-transparent hover:border-primary_blue"
           >
             Create an Account
