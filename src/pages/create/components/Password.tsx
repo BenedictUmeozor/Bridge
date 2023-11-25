@@ -7,27 +7,31 @@ import {
 } from "react";
 import Container from "../../../components/Container";
 import { Eye, EyeOff } from "react-feather";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   password: string;
   setPassword: Dispatch<SetStateAction<string>>;
+  onRegister: () => void;
 };
 
-const Password = ({ setPassword, password }: Props) => {
+const Password = ({ setPassword, password, onRegister }: Props) => {
   const [value, setValue] = useState<string>("");
   const [type, setType] = useState("password");
-  const navigate = useNavigate();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPassword(value);
-    navigate("/dashboard");
   };
 
   useEffect(() => {
     setValue(password);
   }, []);
+
+  useEffect(() => {
+    if (password) {
+      onRegister();
+    }
+  }, [password]);
 
   return (
     <div>

@@ -4,9 +4,10 @@ import { X } from "react-feather";
 
 type Props = {
   onClick: () => void;
+  signout: () => void;
 };
 
-const MenuPage = ({ onClick }: Props) => {
+const MenuPage = ({ onClick, signout }: Props) => {
   return (
     <div className="menu_page md:hidden fixed top-0 left-0 w-full h-screen bg-white z-30">
       <div className="flex items-center justify-between py-4">
@@ -45,7 +46,7 @@ const MenuPage = ({ onClick }: Props) => {
           </Link>
         </li>
         <li>
-          <button onClick={onClick}>Logout</button>
+          <button onClick={signout}>Logout</button>
         </li>
       </ul>
     </div>
