@@ -111,7 +111,7 @@ const Login = () => {
               </button>
             </form>
             <p className="mt-6 text-xs">
-              By registering, you are agreeing to out{" "}
+              By registering, you are agreeing to our{" "}
               <span className="text-primary_blue">terms</span> and{" "}
               <span className="text-primary_blue">conditions</span>
             </p>
