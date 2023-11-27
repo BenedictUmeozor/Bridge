@@ -2,7 +2,6 @@ import { DatePicker, Select } from "antd";
 import { useState, useEffect, FormEvent } from "react";
 import libphonenumber from "google-libphonenumber";
 import { useUserContext } from "../../../../contexts/User";
-import dayjs from "dayjs";
 
 const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
 const PNT = libphonenumber.PhoneNumberType;
@@ -50,29 +49,7 @@ const Personal = ({
 
   const { user } = useUserContext();
 
-  const defaultMonth = dayjs(
-    `${user?.dateOfBirth.year}-${user?.dateOfBirth.month}-${user?.dateOfBirth.day}`,
-    "YYYY-MMMM-DD"
-  );
-  const defaultDay = dayjs(
-    `${user?.dateOfBirth.year}-${user?.dateOfBirth.month}-${user?.dateOfBirth.day}`,
-    "YYYY-MMMM-DD"
-  );
-  const defaultYear = dayjs(
-    `${user?.dateOfBirth.year}-${user?.dateOfBirth.month}-${user?.dateOfBirth.day}`,
-    "YYYY-MMMM-DD"
-  );
 
-  useEffect(() => {
-    if (user) {
-      onNameChange(user.name ?? "");
-      onPhoneNumberChange(user.phoneNumber ?? "");
-      onSurnameChange(user.surname ?? "");
-      onDateChange(user.dateOfBirth.day ?? "");
-      onYearChange(user.dateOfBirth.year ?? "");
-      onMonthChange(user.dateOfBirth.month ?? "");
-    }
-  }, [user]);
 
   useEffect(() => {
     const fetchCountryCodes = () => {
@@ -140,7 +117,6 @@ const Personal = ({
             picker="month"
             className="flex-1 h-14"
             format="MMMM"
-            defaultValue={defaultMonth}
             onChange={(value) => {
               const val = value as unknown;
               const newVal = val as { $M: number };
@@ -151,7 +127,6 @@ const Personal = ({
             picker="date"
             className="flex-1 h-14"
             format="DD"
-            defaultValue={defaultDay}
             onChange={(value) => {
               const val = value as unknown;
               const newVal = val as { $D: string };
@@ -162,7 +137,6 @@ const Personal = ({
             picker="year"
             className="flex-1 h-14"
             format="YYYY"
-            defaultValue={defaultYear}
             onChange={(value) => {
               const val = value as unknown;
               const newVal = val as { $y: string };

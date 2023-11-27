@@ -1,6 +1,23 @@
 import { Helmet } from "react-helmet";
+import { Select } from "antd";
+import { country_list } from "../../../../data/data";
 
 const AddBeneficiaries = () => {
+  const countryOptions = Object.entries(country_list).map(
+    ([value, { code, currency }]) => (
+      <Select.Option key={value} value={value}>
+        <div className="flex items-center gap-2">
+          <img
+            src={`https://flagcdn.com/48x36/${code.toLowerCase()}.png`}
+            alt={`${currency} Flag`}
+            className="w-5"
+          />
+          {currency} ({value})
+        </div>
+      </Select.Option>
+    )
+  );
+
   return (
     <>
       <Helmet>
@@ -12,11 +29,7 @@ const AddBeneficiaries = () => {
         <form className="max-w-lg">
           <div className="mb-4">
             <label className="block mb-1">Country's currency</label>
-            <input
-              type="text"
-              placeholder="Canada"
-              className="w-full h-14 px-2 rounded border-2 border-[#ccc] hover:border-primary_blue"
-            />
+            <Select className="h-14 w-full">{countryOptions}</Select>
           </div>
           <div className="mb-4">
             <label className="block mb-1">Full name of account holder</label>
