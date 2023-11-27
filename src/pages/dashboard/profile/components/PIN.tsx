@@ -1,10 +1,9 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { v4 as uuidV4 } from "uuid";
-import { useUserContext } from "../../../../contexts/User";
 
 type Props = {
-  changeStep: () => void;
+  changeStep: () => Promise<void>;
   onPinChange: (value: string) => void;
 };
 
@@ -12,8 +11,6 @@ const PIN = ({ changeStep, onPinChange }: Props) => {
   const [pin, setPin] = useState<string[]>(new Array(4).fill(""));
   const [currentIndex, setCurrentIndex] = useState(0);
   const element = useRef<HTMLInputElement>(null);
-
-  const { getUser } = useUserContext();
 
   const handleSubmit = async () => {
     for (let i = 0; i <= pin.length - 1; i++) {
@@ -23,7 +20,6 @@ const PIN = ({ changeStep, onPinChange }: Props) => {
     }
     await onPinChange(pin.join(""));
     await changeStep();
-    await getUser();
   };
 
   const handleChange = (

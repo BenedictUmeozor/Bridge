@@ -7,10 +7,13 @@ import { useAxiosAuth } from "../../../hooks/useAxios";
 import { toast } from "react-hot-toast";
 import Loading from "../../../components/Backdrop";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../contexts/User";
 
 const Profile = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const navigate = useNavigate();
+
+  const { getUser } = useUserContext();
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -56,12 +59,11 @@ const Profile = () => {
   });
 
   const updateProfile = async () => {
-    console.log(name, surname, phoneNumber, pin);
     if (pin.length) {
       toast.promise(fetchData(), {
         loading: "Updating your profile...",
         success: () => {
-          navigate("/dashboard");
+          getUser().then(() => navigate("/dashboard"));
           return "Profile updated successfully";
         },
         error: "Profile update failed",
