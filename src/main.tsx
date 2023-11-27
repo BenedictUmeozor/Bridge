@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import "./globals.scss";
 import router from "./libs/router";
-import { NationContextProvider } from "./contexts/Nations";
+import { UserContextProvider } from "./contexts/User";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <NationContextProvider>
+    <UserContextProvider>
       <RouterProvider router={router} />
-    </NationContextProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );

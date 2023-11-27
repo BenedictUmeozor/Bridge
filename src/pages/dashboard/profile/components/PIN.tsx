@@ -1,14 +1,30 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import { v4 as uuidV4 } from "uuid";
+import { useUserContext } from "../../../../contexts/User";
 
 type Props = {
   changeStep: () => void;
+  onPinChange: (value: string) => void;
 };
 
-const PIN = ({ changeStep }: Props) => {
+const PIN = ({ changeStep, onPinChange }: Props) => {
   const [pin, setPin] = useState<string[]>(new Array(4).fill(""));
   const [currentIndex, setCurrentIndex] = useState(0);
   const element = useRef<HTMLInputElement>(null);
+
+  const { getUser } = useUserContext();
+
+  const handleSubmit = async () => {
+    for (let i = 0; i <= pin.length - 1; i++) {
+      if (pin[i].trim() === "") {
+        return toast.error("Please enter your pin");
+      }
+    }
+    await onPinChange(pin.join(""));
+    await changeStep();
+    await getUser();
+  };
 
   const handleChange = (
     { target }: ChangeEvent<HTMLInputElement>,
@@ -55,14 +71,15 @@ const PIN = ({ changeStep }: Props) => {
       <p className="mb-6 text-[0.9rem] text-center">
         This will be the code you use for all transactions
       </p>
+
       <div className="flex items-center justify-center gap-4">
         {pin.map((number, index) => (
           <input
             type="tel"
             ref={currentIndex === index ? element : null}
             key={uuidV4()}
-            value={number}
             onChange={(e) => handleChange(e, index)}
+            defaultValue={number}
             onClick={() => setCurrentIndex(index)}
             onKeyUp={(e) => handleInput(e, index)}
             maxLength={1}
@@ -73,7 +90,7 @@ const PIN = ({ changeStep }: Props) => {
 
       <button
         className="h-12 mt-10 text-center bg-primary_blue text-white font-bold w-full   rounded-md transform hover:scale-95 hover:opacity-75"
-        onClick={changeStep}
+        onClick={handleSubmit}
       >
         Done
       </button>
