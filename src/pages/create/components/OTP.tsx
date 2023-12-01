@@ -1,10 +1,19 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import Container from "../../../components/Container";
 import { v4 as uuidV4 } from "uuid";
+import { toast } from "react-hot-toast";
 
 type Props = {
   onNext: () => void;
 };
+
+function generateRandomNumberString() {
+  const randomNumber = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
+
+  const randomNumberString = randomNumber.toString();
+
+  return randomNumberString;
+}
 
 const OTP = ({ onNext }: Props) => {
   const [pin, setPin] = useState<string[]>(new Array(4).fill(""));
@@ -47,6 +56,10 @@ const OTP = ({ onNext }: Props) => {
       setCurrentIndex(pin.length - 1);
     }
   }, [currentIndex]);
+
+  useEffect(() => {
+    toast("Here's your OTP: " + generateRandomNumberString(), {duration: 9000});
+  }, []);
 
   return (
     <div>
