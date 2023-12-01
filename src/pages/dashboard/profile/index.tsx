@@ -3,17 +3,16 @@ import Address from "./components/Address";
 import PIN from "./components/PIN";
 import Personal from "./components/Personal";
 import { useEffect, useState } from "react";
-import { useAxiosAuth } from "../../../hooks/useAxios";
 import { toast } from "react-hot-toast";
 import Loading from "../../../components/Backdrop";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../../../contexts/User";
 
 const Profile = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
-  const { getUser } = useUserContext();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -28,6 +27,21 @@ const Profile = () => {
   const [postalCode, setPostalCode] = useState("");
   const [pin, setPin] = useState("");
 
+  console.log(
+    name,
+    surname,
+    phoneNumber,
+    month,
+    year,
+    date,
+    country,
+    city,
+    BVN,
+    homeAddress,
+    postalCode,
+    pin
+  );
+
   const handleMonthChange = (value: string) => setMonth(value);
   const handleDateChange = (value: string) => setDate(value);
   const handleYearChange = (value: string) => setYear(value);
@@ -41,43 +55,32 @@ const Profile = () => {
   const handlePostalCodeChange = (value: string) => setPostalCode(value);
   const handlePinChange = (value: string) => setPin(value);
 
-  const { fetchData, isLoading, error } = useAxiosAuth("/users/update", "put", {
-    name,
-    surname,
-    phoneNumber,
-    country,
-    city,
-    BVN,
-    homeAddress,
-    postalCode,
-    dateOfBirth: {
-      month,
-      day: date,
-      year,
-    },
-    PIN: pin,
-  });
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
-  const updateProfile = async () => {
-    if (pin.length) {
-      toast.promise(fetchData(), {
-        loading: "Updating your profile...",
-        success: () => {
-          getUser().then(() => navigate("/dashboard"));
-          return "Profile updated successfully";
-        },
-        error: "Profile update failed",
-      });
-    } else {
-      console.log(pin, "undefined");
+  const update = async () => {
+    setIsLoading(true);
+    setUpdated(false);
+
+    try {
+      await delay(3000);
+
+      setIsLoading(false);
+      setUpdated(true);
+    } catch (error) {
+      setIsLoading(false);
+      toast.error("An error occurred. Please try again.");
     }
   };
 
   useEffect(() => {
-    if (error) {
-      toast.error(error);
+    if (isLoading) {
+      toast.loading("Please wait...", { duration: 3000 });
+    } else if (updated) {
+      toast.success("Your profile was updated");
+      navigate("/dashboard");
     }
-  }, []);
+  }, [isLoading, updated]);
 
   return (
     <>
@@ -115,7 +118,7 @@ const Profile = () => {
           />
         )}
         {currentStep === 3 && (
-          <PIN changeStep={updateProfile} onPinChange={handlePinChange} />
+          <PIN changeStep={update} onPinChange={handlePinChange} />
         )}
       </div>
     </>

@@ -10,7 +10,7 @@ import bell from "../../assets/icons/bell.svg";
 import dashboard_user from "../../assets/icons/dashboard_user.svg";
 import { Menu } from "react-feather";
 import MenuPage from "./components/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Protected from "../../components/Protected";
 import Loading from "../../components/Backdrop";
@@ -20,32 +20,37 @@ const DashboardLayout = () => {
   const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
 
   const delay = (ms: number) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
   const signout = async () => {
     setIsLoading(true);
+    setLoggedOut(false);
 
     try {
       await delay(3000);
 
-      sessionStorage.removeItem("_id");
+      sessionStorage.removeItem("id");
       sessionStorage.removeItem("token");
 
       setIsLoading(false);
-
-      toast.promise(Promise.resolve(), {
-        loading: "Logging out...",
-        success: "You are logged out",
-        error: "Failed to sign out. Please try again.",
-      });
+      setLoggedOut(true);
     } catch (error) {
       setIsLoading(false);
 
       toast.error("An error occurred. Please try again.");
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      toast.loading("Logging you out", { duration: 3000 });
+    } else if (loggedOut) {
+      toast.success("You are logged out");
+    }
+  }, [isLoading, loggedOut]);
 
   return (
     <>

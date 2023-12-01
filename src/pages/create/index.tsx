@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Account from "./components/Account";
 import Country from "./components/Country";
 import CreateAccount from "./components/CreateAccount";
@@ -8,10 +8,10 @@ import Progress from "./components/Progress";
 import OTP from "./components/OTP";
 import Password from "./components/Password";
 import Helmet from "react-helmet";
-import { useAxiosInstance } from "../../hooks/useAxios";
 import { toast } from "react-hot-toast";
 import Loading from "../../components/Backdrop";
 import NotProtected from "../../components/NotProtected";
+import { axiosInstance } from "../../libs/axios";
 
 const OnBoarding = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -22,40 +22,41 @@ const OnBoarding = () => {
   const [country, setCountry] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { fetchData, error, isLoading } = useAxiosInstance(
-    "/auth/register",
-    "post",
-    {
-      email,
-      country,
-      password,
-      accounType: chosenAccount,
-      phoneNumber,
+  const registerUser = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await axiosInstance.post("/sign_up", {
+        email,
+        country,
+        phoneNumber,
+        password,
+        passwordConfirmation: password,
+      });
+      return data;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-  );
+  };
 
   const register = async () => {
     if (!email || !password || !phoneNumber || !country) {
       return toast.error("All fields are required");
     }
 
-    toast.promise(fetchData(), {
+    toast.promise(registerUser(), {
       loading: "Signing up...",
-      success: ({ _id, token }: { _id: string; token: string }) => {
-        sessionStorage.setItem("_id", JSON.stringify(_id));
+      success: ({ id, token }: { id: string; token: string }) => {
+        sessionStorage.setItem("id", JSON.stringify(id));
         sessionStorage.setItem("token", JSON.stringify(token));
         return "Registered successfully";
       },
       error: "Registration failed",
     });
   };
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Container from "../../components/Container";
 import Header from "./components/Header";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { Eye, EyeOff } from "react-feather";
 import { Helmet } from "react-helmet";
 import NotProtected from "../../components/NotProtected";
@@ -14,11 +14,10 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { fetchData, isLoading, error } = useAxiosInstance(
-    "/auth/login",
-    "post",
-    { email, password }
-  );
+  const { fetchData, isLoading } = useAxiosInstance("/sign_in", "post", {
+    email,
+    password,
+  });
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,20 +27,26 @@ const Login = () => {
 
     toast.promise(fetchData(), {
       loading: "Logging in...",
-      success: ({ _id, token }: { _id: string; token: string }) => {
-        sessionStorage.setItem("_id", JSON.stringify(_id));
+      success: ({
+        id,
+        token,
+        firstName,
+      }: {
+        id: string;
+        token: string;
+        firstName: boolean;
+      }) => {
+        sessionStorage.setItem("_id", JSON.stringify(id));
         sessionStorage.setItem("token", JSON.stringify(token));
+        sessionStorage.setItem(
+          "firstName",
+          JSON.stringify(firstName ? true : false)
+        );
         return "You are logged in";
       },
       error: "Login failed",
     });
   };
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-  }, [error]);
 
   return (
     <>
