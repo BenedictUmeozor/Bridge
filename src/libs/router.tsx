@@ -11,6 +11,7 @@ import Transactions from "../pages/dashboard/transactions";
 const HomePage = lazy(() => import("../pages/home"));
 const OnBoarding = lazy(() => import("../pages/create"));
 const Login = lazy(() => import("../pages/login"));
+const FAQ = lazy(() => import("../pages/faq"));
 const DashboardLayout = lazy(() => import("../pages/dashboard"));
 const Dashboard = lazy(() => import("../pages/dashboard/main"));
 const Profile = lazy(() => import("../pages/dashboard/profile"));
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path="create" element={<OnBoarding />} />
       <Route path="login" element={<Login />} />
+      <Route path="faqs" element={<FAQ />} />
       <Route path="dashboard" element={<DashboardLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="profile" element={<Profile />} />

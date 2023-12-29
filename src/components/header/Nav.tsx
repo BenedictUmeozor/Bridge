@@ -12,7 +12,7 @@ const Nav = () => {
     <nav className="mobile_nav hidden max-md:block">
       <Container className="pt-28 pb-4">
         <div className="flex items-center justify-center gap-10 mb-12">
-          <Link to="/" className="text-primary_blue font-bold text-base">
+          <Link to="/faqs" className="text-primary_blue font-bold text-base">
             FAQs
           </Link>
           <div>
