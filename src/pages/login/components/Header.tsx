@@ -16,7 +16,7 @@ const Header = memo(() => {
         </Link>
         <div className="flex items-center gap-10 max-md:gap-2">
           <Link
-            to="/"
+            to="/faqs"
             className="text-primary_blue font-bold text-base max-md:text-xs"
           >
             FAQs
