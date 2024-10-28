@@ -1,33 +1,33 @@
-import { useState } from "react";
-import Account from "./components/Account";
-import Country from "./components/Country";
-import CreateAccount from "./components/CreateAccount";
-import Header from "./components/Header";
-import PhoneNumber from "./components/PhoneNumber";
-import Progress from "./components/Progress";
-import OTP from "./components/OTP";
-import Password from "./components/Password";
-import Helmet from "react-helmet";
-import { toast } from "react-hot-toast";
-import Loading from "../../components/Backdrop";
-import NotProtected from "../../components/NotProtected";
-import { axiosInstance } from "../../libs/axios";
+import { useState } from 'react';
+import Account from './components/Account';
+import Country from './components/Country';
+import CreateAccount from './components/CreateAccount';
+import Header from './components/Header';
+import PhoneNumber from './components/PhoneNumber';
+import Progress from './components/Progress';
+import OTP from './components/OTP';
+import Password from './components/Password';
+import Helmet from 'react-helmet';
+import { toast } from 'react-hot-toast';
+import Loading from '../../components/Backdrop';
+import NotProtected from '../../components/NotProtected';
+import { axiosInstance } from '../../libs/axios';
 
 const OnBoarding = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [chosenAccount, setChosenAccount] = useState<
-    null | "personal" | "business"
+    null | 'personal' | 'business'
   >(null);
-  const [email, setEmail] = useState<string>("");
-  const [country, setCountry] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
+  const [country, setCountry] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
 
   const registerUser = async () => {
     setIsLoading(true);
     try {
-      const { data } = await axiosInstance.post("/sign_up", {
+      const { data } = await axiosInstance.post('/sign_up', {
         email,
         country,
         phoneNumber,
@@ -44,17 +44,17 @@ const OnBoarding = () => {
 
   const register = async () => {
     if (!email || !password || !phoneNumber || !country) {
-      return toast.error("All fields are required");
+      return toast.error('All fields are required');
     }
 
     toast.promise(registerUser(), {
-      loading: "Signing up...",
+      loading: 'Signing up...',
       success: ({ id, token }: { id: string; token: string }) => {
-        sessionStorage.setItem("id", JSON.stringify(id));
-        sessionStorage.setItem("token", JSON.stringify(token));
-        return "Registered successfully";
+        sessionStorage.setItem('id', JSON.stringify(id));
+        sessionStorage.setItem('token', JSON.stringify(token));
+        return 'Registered successfully';
       },
-      error: "Registration failed",
+      error: 'Registration failed',
     });
   };
 
@@ -62,11 +62,13 @@ const OnBoarding = () => {
     <>
       <Helmet>
         <title>Bridge - Create your account</title>
+        <link rel='preload' href='/personal.svg' as='image' />
+        <link rel='preload' href='/business.svg' as='image' />
       </Helmet>
       {isLoading && <Loading />}
       <NotProtected>
-        <section className="pb-3">
-          <div className="hidden">
+        <section className='pb-3'>
+          <div className='hidden'>
             {email! + country + phoneNumber + password}
           </div>
           <Header />
